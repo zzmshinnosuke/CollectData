@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <style>
+        table{border:1px;border-collapse:collapse;border-spacing:0;}
+    </style>
+</head>
+<body>
+<div id="guide" >
+    晚上的指导语<br>
+    (1) 本问卷是晚上睡觉前填写的问卷，请您在睡前（躺在床上，准备入睡前）填写（后台可以查询到您填写问卷的时间）；<br>
+    (2) 关掉手机上其他正在运行的程序例如QQ、音乐、游戏app等，手机调成静音状态；<br>
+    (3) 你现在在寝室或坐在其他安静之处；不是在人多或吵杂之处；<br>
+    (4) 你不是在外走动或在外运动；<br>
+    (5) 你不是正在吃饭；<br>
+    (6) 你没有在处理或即将要处理紧急事务；<br>
+    (7) 接下来你有至少5分钟的时间可以从容地填写问卷；<br>
+    (8) 你是独立完成此次问卷，旁边没有其他人员干扰；<br>
+    (9) 填写问卷过程中，遇到非紧急重要的手机来电，请完成问卷后再接听；<br>
+    (10) 测验中如果还碰到其他问题，问卷完成提交后可以微信反映给实验人员。<br>
+    <br>
+    <input type="submit" value="开始问卷" onclick = "start();">
+</div>
+<div id="que" style="display: none">
+    1.您现在是否已经准备入睡？<br>
+    <input type="radio" name="qu1" value="0">否
+    <input type="radio" name="qu1" value="1" >是
+    <br><br>
+
+    2.根据图片，输入最适合你过去24小时的情绪的数字。<br>
+    <img src="/static/1.png" WIDTH="300" HEIGHT="170"><br>
+    <input id="qu2_1" placeholder="请输入"><br>
+    <img src="/static/2.png" WIDTH="300" HEIGHT="170"><br>
+    <input id="qu2_2" placeholder="请输入"><br>
+    <img src="/static/3.png" WIDTH="300" HEIGHT="170"><br>
+    <input id="qu2_3" placeholder="请输入"><br>
+    <br><br>
+
+    3.请描述您今天的身体健康状态
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>很差</th>
+            <th>一般</th>
+            <th>好</th>
+            <th>非常好</th>
+            <th>极好</th>
+        </tr>
+        <tr>
+            <td>健康状态</td>
+            <td><input type="radio" name="qu3" value="0" >0</td>
+            <td><input type="radio" name="qu3" value="1" >1</td>
+            <td><input type="radio" name="qu3" value="2" >2</td>
+            <td><input type="radio" name="qu3" value="3" >3</td>
+            <td><input type="radio" name="qu3" value="4" >4</td>
+        </tr>
+    </table>
+    <br><br>
+
+    4.您在过去的24小时以内是否遇到以下事件（没有发生选择第一项“0”，有发生选择数字“1-4”评价事件对您的影响程度）：
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>没有发生</th>
+            <th>没有影响</th>
+            <th>有点影响</th>
+            <th>比较有影响</th>
+            <th>极大影响</th>
+        </tr>
+        <tr>
+            <td>（1）与某人发生争吵或分歧</td>
+            <td><input type="radio" name="qu4_1" value="0" >0</td>
+            <td><input type="radio" name="qu4_1" value="1" >1</td>
+            <td><input type="radio" name="qu4_1" value="2" >2</td>
+            <td><input type="radio" name="qu4_1" value="3" >3</td>
+            <td><input type="radio" name="qu4_1" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（2）差点发生争论或分歧，但最后避免了</td>
+            <td><input type="radio" name="qu4_2" value="0" >0</td>
+            <td><input type="radio" name="qu4_2" value="1" >1</td>
+            <td><input type="radio" name="qu4_2" value="2" >2</td>
+            <td><input type="radio" name="qu4_2" value="3" >3</td>
+            <td><input type="radio" name="qu4_2" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（3）在学校或工作遇到压力事件</td>
+            <td><input type="radio" name="qu4_3" value="0" >0</td>
+            <td><input type="radio" name="qu4_3" value="1" >1</td>
+            <td><input type="radio" name="qu4_3" value="2" >2</td>
+            <td><input type="radio" name="qu4_3" value="3" >3</td>
+            <td><input type="radio" name="qu4_3" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（4）在家中发生压力事件</td>
+            <td><input type="radio" name="qu4_4" value="0" >0</td>
+            <td><input type="radio" name="qu4_4" value="1" >1</td>
+            <td><input type="radio" name="qu4_4" value="2" >2</td>
+            <td><input type="radio" name="qu4_4" value="3" >3</td>
+            <td><input type="radio" name="qu4_4" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（5）经历种族，性别或年龄歧视</td>
+            <td><input type="radio" name="qu4_5" value="0" >0</td>
+            <td><input type="radio" name="qu4_5" value="1" >1</td>
+            <td><input type="radio" name="qu4_5" value="2" >2</td>
+            <td><input type="radio" name="qu4_5" value="3" >3</td>
+            <td><input type="radio" name="qu4_5" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（6）亲戚或亲密的朋友遭遇了不好的事情</td>
+            <td><input type="radio" name="qu4_6" value="0" >0</td>
+            <td><input type="radio" name="qu4_6" value="1" >1</td>
+            <td><input type="radio" name="qu4_6" value="2" >2</td>
+            <td><input type="radio" name="qu4_6" value="3" >3</td>
+            <td><input type="radio" name="qu4_6" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（7）发生其他不好的或紧张的事情</td>
+            <td><input type="radio" name="qu4_7" value="0" >0</td>
+            <td><input type="radio" name="qu4_7" value="1" >1</td>
+            <td><input type="radio" name="qu4_7" value="2" >2</td>
+            <td><input type="radio" name="qu4_7" value="3" >3</td>
+            <td><input type="radio" name="qu4_7" value="4" >4</td>
+        </tr>
+    </table>
+    <br><br>
+
+    5.请根据您过去24小时的实际情况，对以下的描述进行评分：
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>完全不符合</th>
+            <th>有点不符合</th>
+            <th>有点符合</th>
+            <th>完全符合</th>
+        </tr>
+        <tr>
+            <td>（1）担心任务或作业的截止日期</td>
+            <td><input type="radio" name="qu5_1" value="1" >1</td>
+            <td><input type="radio" name="qu5_1" value="2" >2</td>
+            <td><input type="radio" name="qu5_1" value="3" >3</td>
+            <td><input type="radio" name="qu5_1" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（2）承担好多责任</td>
+            <td><input type="radio" name="qu5_2" value="1" >1</td>
+            <td><input type="radio" name="qu5_2" value="2" >2</td>
+            <td><input type="radio" name="qu5_2" value="3" >3</td>
+            <td><input type="radio" name="qu5_2" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（3）没有足够的时间完成要做的事</td>
+            <td><input type="radio" name="qu5_3" value="1" >1</td>
+            <td><input type="radio" name="qu5_3" value="2" >2</td>
+            <td><input type="radio" name="qu5_3" value="3" >3</td>
+            <td><input type="radio" name="qu5_3" value="4" >4</td>
+        </tr>
+        <tr>
+            <td>（4）同时要做太多事情</td>
+            <td><input type="radio" name="qu5_4" value="1" >1</td>
+            <td><input type="radio" name="qu5_4" value="2" >2</td>
+            <td><input type="radio" name="qu5_4" value="3" >3</td>
+            <td><input type="radio" name="qu5_4" value="4" >4</td>
+        </tr>
+    </table>
+    <br><br>
+
+    6.请您描述下您过去24小时的情绪状态（从1-7中选择合适的数字，1表示有一点，7表示很多）
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>有一点</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>很多</th>
+        </tr>
+        <tr>
+            <td>快乐的</td>
+            <td><input type="radio" name="qu6_1" value="1" >1</td>
+            <td><input type="radio" name="qu6_1" value="2" >2</td>
+            <td><input type="radio" name="qu6_1" value="3" >3</td>
+            <td><input type="radio" name="qu6_1" value="4" >4</td>
+            <td><input type="radio" name="qu6_1" value="5" >5</td>
+            <td><input type="radio" name="qu6_1" value="6" >6</td>
+            <td><input type="radio" name="qu6_1" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>抑郁的/忧郁的</td>
+            <td><input type="radio" name="qu6_2" value="1" >1</td>
+            <td><input type="radio" name="qu6_2" value="2" >2</td>
+            <td><input type="radio" name="qu6_2" value="3" >3</td>
+            <td><input type="radio" name="qu6_2" value="4" >4</td>
+            <td><input type="radio" name="qu6_2" value="5" >5</td>
+            <td><input type="radio" name="qu6_2" value="6" >6</td>
+            <td><input type="radio" name="qu6_2" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>满意的</td>
+            <td><input type="radio" name="qu6_3" value="1" >1</td>
+            <td><input type="radio" name="qu6_3" value="2" >2</td>
+            <td><input type="radio" name="qu6_3" value="3" >3</td>
+            <td><input type="radio" name="qu6_3" value="4" >4</td>
+            <td><input type="radio" name="qu6_3" value="5" >5</td>
+            <td><input type="radio" name="qu6_3" value="6" >6</td>
+            <td><input type="radio" name="qu6_3" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>享受的/有乐趣的</td>
+            <td><input type="radio" name="qu6_4" value="1" >1</td>
+            <td><input type="radio" name="qu6_4" value="2" >2</td>
+            <td><input type="radio" name="qu6_4" value="3" >3</td>
+            <td><input type="radio" name="qu6_4" value="4" >4</td>
+            <td><input type="radio" name="qu6_4" value="5" >5</td>
+            <td><input type="radio" name="qu6_4" value="6" >6</td>
+            <td><input type="radio" name="qu6_4" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>沮丧的</td>
+            <td><input type="radio" name="qu6_5" value="1" >1</td>
+            <td><input type="radio" name="qu6_5" value="2" >2</td>
+            <td><input type="radio" name="qu6_5" value="3" >3</td>
+            <td><input type="radio" name="qu6_5" value="4" >4</td>
+            <td><input type="radio" name="qu6_5" value="5" >5</td>
+            <td><input type="radio" name="qu6_5" value="6" >6</td>
+            <td><input type="radio" name="qu6_5" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>不快乐的</td>
+            <td><input type="radio" name="qu6_6" value="1" >1</td>
+            <td><input type="radio" name="qu6_6" value="2" >2</td>
+            <td><input type="radio" name="qu6_6" value="3" >3</td>
+            <td><input type="radio" name="qu6_6" value="4" >4</td>
+            <td><input type="radio" name="qu6_6" value="5" >5</td>
+            <td><input type="radio" name="qu6_6" value="6" >6</td>
+            <td><input type="radio" name="qu6_6" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>生气的/有敌意的</td>
+            <td><input type="radio" name="qu6_7" value="1" >1</td>
+            <td><input type="radio" name="qu6_7" value="2" >2</td>
+            <td><input type="radio" name="qu6_7" value="3" >3</td>
+            <td><input type="radio" name="qu6_7" value="4" >4</td>
+            <td><input type="radio" name="qu6_7" value="5" >5</td>
+            <td><input type="radio" name="qu6_7" value="6" >6</td>
+            <td><input type="radio" name="qu6_7" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>欢喜的</td>
+            <td><input type="radio" name="qu6_8" value="1" >1</td>
+            <td><input type="radio" name="qu6_8" value="2" >2</td>
+            <td><input type="radio" name="qu6_8" value="3" >3</td>
+            <td><input type="radio" name="qu6_8" value="4" >4</td>
+            <td><input type="radio" name="qu6_8" value="5" >5</td>
+            <td><input type="radio" name="qu6_8" value="6" >6</td>
+            <td><input type="radio" name="qu6_8" value="7" >7</td>
+        </tr>
+        <tr>
+            <td>焦虑的/担心的</td>
+            <td><input type="radio" name="qu6_9" value="1" >1</td>
+            <td><input type="radio" name="qu6_9" value="2" >2</td>
+            <td><input type="radio" name="qu6_9" value="3" >3</td>
+            <td><input type="radio" name="qu6_9" value="4" >4</td>
+            <td><input type="radio" name="qu6_9" value="5" >5</td>
+            <td><input type="radio" name="qu6_9" value="6" >6</td>
+            <td><input type="radio" name="qu6_9" value="7" >7</td>
+        </tr>
+    </table>
+
+<br>
+<!-- 提交按钮 -->
+<br>
+<input type="submit" value="提交" onclick = "submitData();">
+<button>取消</button>
+</div>
+
+<div id="ret" style="display: none">
+    提交成功！
+</div>
+
+<script type="text/javascript">
+
+    function submitData(){
+
+        var qs = getQueryString();
+        var PhoneNum = qs["PhoneNum"];
+        console.log(PhoneNum);
+
+        var qu1=$("input[name='qu1']:checked").val();
+
+        var qu2_1=$('#qu2_1').val();
+        var qu2_2=$('#qu2_2').val();
+        var qu2_3=$('#qu2_3').val();
+
+        var qu3=$("input[name='qu3']:checked").val();
+
+        var qu4_1=$("input[name='qu4_1']:checked").val();
+        var qu4_2=$("input[name='qu4_2']:checked").val();
+        var qu4_3=$("input[name='qu4_3']:checked").val();
+        var qu4_4=$("input[name='qu4_4']:checked").val();
+        var qu4_5=$("input[name='qu4_5']:checked").val();
+        var qu4_6=$("input[name='qu4_6']:checked").val();
+        var qu4_7=$("input[name='qu4_7']:checked").val();
+
+        var qu5_1=$("input[name='qu5_1']:checked").val();
+        var qu5_2=$("input[name='qu5_2']:checked").val();
+        var qu5_3=$("input[name='qu5_3']:checked").val();
+        var qu5_4=$("input[name='qu5_4']:checked").val();
+
+        var qu6_1=$("input[name='qu6_1']:checked").val();
+        var qu6_2=$("input[name='qu6_2']:checked").val();
+        var qu6_3=$("input[name='qu6_3']:checked").val();
+        var qu6_4=$("input[name='qu6_4']:checked").val();
+        var qu6_5=$("input[name='qu6_5']:checked").val();
+        var qu6_6=$("input[name='qu6_6']:checked").val();
+        var qu6_7=$("input[name='qu6_7']:checked").val();
+        var qu6_8=$("input[name='qu6_8']:checked").val();
+        var qu6_9=$("input[name='qu6_9']:checked").val();
+
+
+        var data=JSON.stringify({'PhoneNum':PhoneNum,
+            'qu1':qu1,
+            'qu2_1':qu2_1,'qu2_2':qu2_2,'qu2_3':qu2_3,
+            'qu3':qu3,
+            'qu4_1':qu4_1,'qu4_2':qu4_2,'qu4_3':qu4_3,'qu4_4':qu4_4,'qu4_5':qu4_5,'qu4_6':qu4_6,'qu4_7':qu4_7,
+            'qu5_1':qu5_1,'qu5_2':qu5_2,'qu5_3':qu5_3,'qu5_4':qu5_4,
+            'qu6_1':qu6_1,'qu6_2':qu6_2,'qu6_3':qu6_3,'qu6_4':qu6_4,'qu6_5':qu6_5,'qu6_6':qu6_6,'qu6_7':qu6_7,'qu6_8':qu6_8,'qu6_9':qu6_9})
+        console.log(data)
+        if(qu1==undefined||
+            qu2_1==""||qu2_2==""||qu2_3==""||
+            qu3==undefined||
+            qu4_1==undefined||qu4_2==undefined||qu4_3==undefined||qu4_4==undefined||qu4_5==undefined||qu4_6==undefined||qu4_7==undefined||
+        qu5_1==undefined||qu5_2==undefined||qu5_3==undefined||qu5_4==undefined||
+        qu6_1==undefined||qu6_2==undefined||qu6_3==undefined||qu6_4==undefined||qu6_5==undefined||qu6_6==undefined||qu6_7==undefined||qu6_8==undefined||qu6_9==undefined)
+        {
+            Toast("不可以为空",2000)
+        }
+        else {
+            $.post("{%  url 'Night'  %}",data,function(ret) {
+                document.getElementById("guide").style.display="none";//隐藏
+                document.getElementById("que").style.display="none";//隐藏
+                document.getElementById("ret").style.display="";//显示
+            })
+        }
+    };
+
+    function Toast(msg,duration){
+    duration=isNaN(duration)?3000:duration;
+    var m = document.createElement('div');
+    m.innerHTML = msg;
+    m.style.cssText="width:60%; min-width:150px; background:#000; opacity:0.5; height:40px; color:#fff; line-height:40px; text-align:center; border-radius:5px; position:fixed; top:40%; left:20%; z-index:999999; font-weight:bold;";
+    document.body.appendChild(m);
+    setTimeout(function() {
+        var d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+    }, duration);
+    };
+
+    function start(){
+        document.getElementById("guide").style.display="none";//隐藏
+        document.getElementById("que").style.display="";//显示
+    };
+
+    function getQueryString() {
+      var qs = location.search.substr(1), // 获取url中"?"符后的字串
+        args = {}, // 保存参数数据的对象
+        items = qs.length ? qs.split("&") : [], // 取得每一个参数项,
+        item = null,
+        len = items.length;
+
+      for(var i = 0; i < len; i++) {
+        item = items[i].split("=");
+        var name = decodeURIComponent(item[0]),
+          value = decodeURIComponent(item[1]);
+        if(name) {
+          args[name] = value;
+        }
+      }
+      return args;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <style>
+        table{border:1px;border-collapse:collapse;border-spacing:0;}
+    </style>
+</head>
+<body>
+<div id="guide" >
+    早晨的指导语<br>
+    (1) 本问卷是早晨醒来后填写的问卷，请您在醒来后立刻填写（后台可以查询到您填写问卷的时间）；<br>
+    (2) 关掉手机上其他正在运行的程序例如QQ、音乐、游戏app等，手机调成静音状态；<br>
+    (3) 你现在在寝室或坐在其他安静之处；不是在人多或吵杂之处。<br>
+    (4) 你不是在外走动或在外运动；<br>
+    (5) 你不是正在吃饭；<br>
+    (6) 你没有在处理或即将要处理紧急事务；<br>
+    (7) 接下来你有至少5分钟的时间可以从容地填写问卷；<br>
+    (8) 你是独立完成此次问卷，旁边没有其他人员干扰；<br>
+    (9) 填写问卷过程中，遇到非紧急重要的手机来电，请完成问卷后再接听。<br>
+    (10) 测验中如果还碰到其他问题，问卷完成提交后可以微信反映给实验人员。<br>
+    <br>
+    <input type="submit" value="开始问卷" onclick = "start();">
+</div>
+<div id="que" style="display: none">
+    1.您现在是否是早晨刚睡醒？
+    <input type="radio" name="isWake" value="0">否
+    <input type="radio" name="isWake" value="1" >是
+    <br><br>
+
+    2.您昨晚实际睡眠___小时（不等于卧床时间，单位：小时；例：8小时30分，就填8.5）<br>
+    <input id="sleep_time" placeholder="请输入睡眠时间">
+    <br><br>
+
+    3.您昨晚睡眠质量如何？
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>非常不好</th>c
+            <th>有点不好</th>
+            <th>有点好</th>
+            <th>非常好</th>
+        </tr>
+        <tr>
+            <td>睡眠质量</td>
+            <td><input type="radio" name="sleep_quality" value="1" >1</td>
+            <td><input type="radio" name="sleep_quality" value="2" >2</td>
+            <td><input type="radio" name="sleep_quality" value="3" >3</td>
+            <td><input type="radio" name="sleep_quality" value="4" >4</td>
+        </tr>
+    </table>
+
+    <!-- 提交按钮 -->
+    <br>
+    <input type="submit" value="提交" onclick = "submitData();">
+    <button>取消</button>
+</div>
+
+<div id="ret" style="display: none">
+    提交成功！
+</div>
+<script type="text/javascript">
+
+    function submitData(){
+
+        var qs = getQueryString();
+        var PhoneNum = qs["PhoneNum"];
+        console.log(PhoneNum);
+
+        var iswake=$("input[name='isWake']:checked").val();
+        var sleeptime=$('#sleep_time').val();
+        var sleep_quality=$("input[name='sleep_quality']:checked").val();
+        var data=JSON.stringify({'1':iswake,'2':sleeptime,'3':sleep_quality,'PhoneNum':PhoneNum})
+        if(iswake==undefined||sleep_quality==undefined||sleeptime=="")
+        {
+            Toast("不可以为空",2000)
+        }
+        else {
+            $.post("{%  url 'Morning'  %}",data,function(ret) {
+                if(ret=="success"){
+                    document.getElementById("guide").style.display="none";//隐藏
+                    document.getElementById("que").style.display="none";//隐藏
+                    document.getElementById("ret").style.display="";//显示
+                }
+            })
+        }
+
+    };
+
+    function Toast(msg,duration){
+    duration=isNaN(duration)?3000:duration;
+    var m = document.createElement('div');
+    m.innerHTML = msg;
+    m.style.cssText="width:60%; min-width:150px; background:#000; opacity:0.5; height:40px; color:#fff; line-height:40px; text-align:center; border-radius:5px; position:fixed; top:40%; left:20%; z-index:999999; font-weight:bold;";
+    document.body.appendChild(m);
+    setTimeout(function() {
+        var d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+    }, duration);
+    };
+
+    function start(){
+        document.getElementById("guide").style.display="none";//隐藏
+        document.getElementById("que").style.display="";//显示
+    };
+
+    function getQueryString() {
+      var qs = location.search.substr(1), // 获取url中"?"符后的字串
+        args = {}, // 保存参数数据的对象
+        items = qs.length ? qs.split("&") : [], // 取得每一个参数项,
+        item = null,
+        len = items.length;
+
+      for(var i = 0; i < len; i++) {
+        item = items[i].split("=");
+        var name = decodeURIComponent(item[0]),
+          value = decodeURIComponent(item[1]);
+        if(name) {
+          args[name] = value;
+        }
+      }
+      return args;
+    }
+</script>
+</body>
+
+</html>
